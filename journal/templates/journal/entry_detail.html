@@ -1,0 +1,31 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ entry.title }} | Dear Diary</title>
+    <link rel="stylesheet" href="{% static 'journal/style.css' %}">
+</head>
+
+<body class="entries-page">
+
+    <div class="memory-card">
+
+        <h1>{{ entry.title }} ♡</h1>
+
+        <p class="memory-date">
+            {{ entry.created_at|date:"d M Y, h:i A" }}
+        </p>
+
+        <hr>
+
+        <p>{{ entry.content|linebreaksbr }}</p>
+
+    </div>
+
+    <p>
+        <a href="{% url 'entries' %}">← Back to My Memories</a>
+    </p>
+
+</body>
+</html>

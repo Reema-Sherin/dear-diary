@@ -1,0 +1,24 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dear Diary</title>
+    <link rel="stylesheet" href="{% static 'journal/style.css' %}">
+</head>
+
+<body>
+
+    <h1>Dear Diary ♡</h1>
+
+    <h2>Your little corner of the internet 🌷</h2>
+
+    <p>A safe space for your thoughts, feelings and memories.</p>
+
+    <a href="{% url 'write_entry' %}">
+        <button>Start Writing ♡</button>
+    </a>
+
+</body>
+</html>

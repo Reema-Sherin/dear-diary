@@ -1,0 +1,45 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Write Your Diary | Dear Diary</title>
+    <link rel="stylesheet" href="{% static 'journal/style.css' %}">
+</head>
+
+<body>
+
+    <h1>Dear Diary ♡</h1>
+    <h2>A little space just for you...</h2>
+
+    <form method="POST">
+    {% csrf_token %}
+
+    <input
+        type="text"
+        name="title"
+        placeholder="Give your entry a title..."
+        required
+    >
+
+    <br><br>
+
+    <textarea
+        name="content"
+        rows="10"
+        cols="50"
+        placeholder="What's on your mind today?"
+        required
+    ></textarea>
+
+    <br><br>
+
+    <button type="submit">Save My Thoughts ♡</button>
+</form>
+
+    <p><a href="/">← Back to home</a></p>
+
+</body>
+</html>
