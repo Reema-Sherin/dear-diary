@@ -1,24 +1,81 @@
+
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Dear Diary</title>
+
     <link rel="stylesheet" href="{% static 'journal/style.css' %}">
 </head>
 
-<body>
+<body class="home-page">
 
-    <h1>Dear Diary ♡</h1>
+    {% if user.is_authenticated %}
 
-    <h2>Your little corner of the internet 🌷</h2>
+    <nav class="home-nav">
 
-    <p>A safe space for your thoughts, feelings and memories.</p>
-    
-    <a href="{% url 'write_entry' %}">
-        <button>Start Writing ♡</button>
-    </a>
+        <p>Welcome, {{ user.username }}! ♡</p>
+
+        <a href="{% url 'entries' %}">My Memories</a>
+
+        <a href="{% url 'write_entry' %}">Write a Diary</a>
+
+        <form method="POST" action="{% url 'logout' %}" class="logout-form">
+            {% csrf_token %}
+            <button type="submit" class="logout-button">
+                Logout ↗
+            </button>
+        </form>
+
+    </nav>
+
+    {% else %}
+
+    <nav class="home-nav">
+        <a href="{% url 'login' %}">Login</a>
+        <a href="{% url 'signup' %}">Sign Up</a>
+    </nav>
+
+    {% endif %}
+
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+            {{ message }}
+        </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    <main class="home-content">
+
+        <h1>Dear Diary ♡</h1>
+
+        <h2>Your little corner of the internet 🌷</h2>
+
+        <p>
+            A safe space for your thoughts, feelings and memories.
+        </p>
+
+        {% if user.is_authenticated %}
+
+        <a href="{% url 'write_entry' %}" class="home-cta">
+            Start Writing ♡
+        </a>
+
+        {% else %}
+
+        <a href="{% url 'signup' %}" class="home-cta">
+            Create Your Diary ♡
+        </a>
+
+        {% endif %}
+
+    </main>
 
 </body>
 </html>

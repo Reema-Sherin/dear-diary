@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 
 class DiaryEntry(models.Model):
     title = models.CharField(max_length=200)
@@ -28,3 +29,10 @@ class DiaryEntry(models.Model):
     mood = models.CharField(max_length=20, choices=MOOD_CHOICES, blank=True, default='')
     def __str__(self):
         return self.title
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name='diary_entries',
+        null=True,
+        blank=True
+    )

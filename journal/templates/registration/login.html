@@ -1,0 +1,50 @@
+
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login | Dear Diary</title>
+
+    <link rel="stylesheet" href="{% static 'journal/auth.css' %}">
+
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body class="auth-page">
+
+    <div class="auth-card">
+
+        <h1>Welcome Back ♡</h1>
+
+        <p class="auth-subtitle">
+            Your little memories are waiting for you.
+        </p>
+
+        <form method="POST" class="auth-form">
+            {% csrf_token %}
+
+            {{ form.as_p }}
+
+            {% if next %}
+                <input type="hidden" name="next" value="{{ next }}">
+            {% endif %}
+
+            <button type="submit" class="auth-button">
+                Log In ♡
+            </button>
+        </form>
+
+        <p class="auth-footer">
+            Don't have an account?
+            <a href="{% url 'signup' %}">Create an account</a>
+        </p>
+
+    </div>
+
+</body>
+</html>
