@@ -363,3 +363,338 @@ button:active {
     }
 
 }
+
+
+
+/* EDIT MEMORY PAGE */
+
+body.edit-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 40px 20px;
+}
+
+.edit-container {
+    width: 100%;
+    max-width: 720px;
+    margin: auto;
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.94);
+    border: 1px solid #f1dce8;
+    border-radius: 22px;
+    box-shadow: 0 8px 30px rgba(120, 80, 110, 0.12);
+}
+
+.edit-container h1 {
+    font-size: 48px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.edit-subtitle {
+    text-align: center;
+    margin: 0 auto 30px;
+}
+
+.edit-form {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    gap: 10px;
+}
+
+.edit-form label {
+    display: block;
+    text-align: left;
+    color: #70566c;
+    font-weight: 600;
+    margin-top: 10px;
+}
+
+.edit-form input,
+.edit-form textarea {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    padding: 14px;
+    border: 1px solid #ead5e4;
+    border-radius: 12px;
+    background: #fffafd;
+    color: #514456;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    outline: none;
+}
+
+.edit-form input:focus,
+.edit-form textarea:focus {
+    border-color: #c98ead;
+    box-shadow: 0 0 0 3px rgba(201, 142, 173, 0.12);
+}
+
+.edit-form textarea {
+    min-height: 260px;
+    resize: vertical;
+    line-height: 1.8;
+}
+
+.edit-form button {
+    display: block;
+    align-self: center;
+    margin-top: 18px;
+    min-width: 200px;
+}
+
+.edit-cancel {
+    display: block;
+    text-align: center;
+    margin-top: 22px;
+    color: #98718d;
+    text-decoration: none;
+}
+
+.edit-cancel:hover {
+    color: #805b78;
+    text-decoration: underline;
+}
+
+.edit-error {
+    text-align: center;
+    color: #b34b65;
+    margin-bottom: 15px;
+}
+
+@media (max-width: 600px) {
+    body.edit-page {
+        padding: 20px 12px;
+    }
+
+    .edit-container {
+        padding: 25px 18px;
+    }
+
+    .edit-container h1 {
+        font-size: 36px;
+    }
+}
+
+.delete-entry {
+    display: inline-block;
+    margin: 12px;
+    padding: 10px 22px;
+    border-radius: 25px;
+    background: #F8E5EA;
+    color: #A45F78;
+    text-decoration: none;
+    font-size: 14px;
+    transition: background 0.2s ease;
+}
+
+.delete-entry:hover {
+    background: #F0CEDA;
+}
+
+/* MOOD SELECTOR */
+
+.mood-select {
+    width: 100%;
+    padding: 13px;
+    margin: 10px 0 20px;
+
+    border: 1px solid #E5C2D4;
+    border-radius: 12px;
+
+    background: #FFFBFD;
+    color: #76556C;
+
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+
+    cursor: pointer;
+}
+
+.mood-select:focus {
+    outline: none;
+    border-color: #C995B1;
+}
+
+.memory-mood {
+    display: inline-block;
+    padding: 5px 12px;
+
+    background: #F5E5EF;
+    border-radius: 20px;
+
+    color: #896681;
+    font-size: 13px;
+}
+
+/* =====================================
+   WRITE DIARY PAGE
+===================================== */
+
+body.write-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 40px 20px;
+}
+
+.write-container {
+    width: 100%;
+    max-width: 720px;
+    padding: 40px;
+
+    background: rgba(255, 249, 252, 0.95);
+
+    border: 1px solid #E5C2D4;
+    border-radius: 22px;
+
+    box-shadow: 0 8px 30px rgba(120, 80, 110, 0.12);
+}
+
+.write-container h1 {
+    font-size: 48px;
+    text-align: center;
+}
+
+.write-container h2 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.write-form {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    width: 100%;
+}
+
+.write-form label {
+    text-align: left;
+    color: #70566C;
+    font-weight: 600;
+    margin-top: 8px;
+}
+
+.write-form input,
+.write-form textarea,
+.write-form select {
+    width: 100%;
+    padding: 14px;
+
+    border: 1px solid #E5C2D4;
+    border-radius: 12px;
+
+    background: #FFFBFD;
+    color: #514456;
+
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+}
+
+.write-form textarea {
+    min-height: 260px;
+    resize: vertical;
+    line-height: 1.8;
+}
+
+.write-form input:focus,
+.write-form textarea:focus,
+.write-form select:focus {
+    outline: none;
+    border-color: #C995B1;
+    box-shadow: 0 0 0 3px rgba(201, 142, 173, 0.12);
+}
+
+.write-form button {
+    align-self: center;
+    margin-top: 18px;
+    min-width: 200px;
+}
+
+.write-back {
+    display: block;
+    margin-top: 25px;
+    text-align: center;
+    color: #98718D;
+    text-decoration: none;
+}
+
+.write-back:hover {
+    text-decoration: underline;
+}
+
+/* WRITE PAGE MOBILE DESIGN */
+
+@media (max-width: 600px) {
+
+    .write-container {
+        padding: 25px 18px;
+    }
+
+    .write-container h1 {
+        font-size: 36px;
+    }
+
+}
+
+/* MEMORY SEARCH */
+
+.memory-search {
+    max-width: 550px;
+    width: 100%;
+    margin: 25px auto 35px;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.memory-search input {
+    flex: 1;
+    min-width: 0;
+    padding: 13px 18px;
+
+    border: 1px solid #E5C2D4;
+    border-radius: 30px;
+
+    background: #FFFBFD;
+    color: #514456;
+
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    outline: none;
+}
+
+.memory-search input:focus {
+    border-color: #C995B1;
+    box-shadow: 0 0 0 3px rgba(201, 142, 173, 0.12);
+}
+
+.memory-search button {
+    padding: 12px 20px;
+    white-space: nowrap;
+}
+
+.memory-search a {
+    color: #98718D;
+    text-decoration: none;
+    font-size: 13px;
+}
+
+@media (max-width: 500px) {
+    .memory-search {
+        flex-wrap: wrap;
+    }
+
+    .memory-search input {
+        flex-basis: 100%;
+    }
+}

@@ -20,6 +20,13 @@
         <hr>
 
         <p>{{ entry.content|linebreaksbr }}</p>
+        <a href="{% url 'edit_entry' entry.id %}" class="open-entry">
+            Edit this memory ♡
+        </a>
+
+        <a href="{% url 'delete_entry' entry.id %}" class="delete-entry">
+            Delete this memory ♡
+        </a>
 
     </div>
 

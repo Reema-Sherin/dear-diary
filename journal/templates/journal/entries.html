@@ -1,3 +1,4 @@
+
 {% load static %}
 
 <!DOCTYPE html>
@@ -10,6 +11,24 @@
 <body class="entries-page">
 
     <h1>My Little Memories ♡</h1>
+
+    <form method="GET" class="memory-search">
+
+        <input
+            type="text"
+            name="q"
+            placeholder="Search your memories..."
+            value="{{ query }}"
+        >
+
+        <button type="submit">Search ♡</button>
+
+        {% if query %}
+            <a href="{% url 'entries' %}">Clear</a>
+        {% endif %}
+
+    </form>
+
     <p class="entries-subtitle">
         A collection of moments worth remembering
     </p>
@@ -18,26 +37,42 @@
 
         {% for entry in entries %}
 
-        <div class="memory-card">
+            <div class="memory-card">
 
-            <h2>{{ entry.title }} ♡</h2>
+                <h2>{{ entry.title }} ♡</h2>
 
-            <p class="memory-date">
-                {{ entry.created_at|date:"d M Y, h:i A" }}
-            </p>
+                <p class="memory-date">
+                    {{ entry.created_at|date:"d M Y, h:i A" }}
+                </p>
 
-            <a href="{% url 'entry_detail' entry.id %}"
-               class="open-entry">
-                Open this letter ♡
-            </a>
+                {% if entry.mood %}
+                    <p class="memory-mood">
+                        Mood: {{ entry.get_mood_display }}
+                    </p>
+                {% endif %}
 
-        </div>
+                <a href="{% url 'entry_detail' entry.id %}"
+                   class="open-entry">
+                    Open this letter ♡
+                </a>
+
+            </div>
 
         {% empty %}
 
-        <p class="empty-message">
-            No memories here yet. Write your first entry! ♡
-        </p>
+            {% if query %}
+
+                <p class="empty-message">
+                    No memories found for "{{ query }}" ♡
+                </p>
+
+            {% else %}
+
+                <p class="empty-message">
+                    You haven't written anything yet. Start your first entry ♡
+                </p>
+
+            {% endif %}
 
         {% endfor %}
 

@@ -1,0 +1,40 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Delete Memory | Dear Diary</title>
+    <link rel="stylesheet" href="{% static 'journal/style.css' %}">
+</head>
+
+<body class="edit-page">
+
+    <div class="edit-container">
+
+        <h1>Are You Sure? ♡</h1>
+
+        <p class="edit-subtitle">
+            Do you really want to let this memory go?
+        </p>
+
+        <h2>{{ entry.title }}</h2>
+
+        <p>This action cannot be undone.</p>
+
+        <form method="POST" class="edit-form">
+            {% csrf_token %}
+
+            <button type="submit">
+                Yes, Delete This Memory
+            </button>
+        </form>
+
+        <a href="{% url 'entry_detail' entry.id %}" class="edit-cancel">
+            No, Keep My Memory ♡
+        </a>
+
+    </div>
+
+</body>
+</html>

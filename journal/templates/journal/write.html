@@ -1,45 +1,91 @@
-{% load static %}
 
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Write Your Diary | Dear Diary</title>
+
     <link rel="stylesheet" href="{% static 'journal/style.css' %}">
 </head>
 
-<body>
+<body class="write-page">
 
-    <h1>Dear Diary ♡</h1>
-    <h2>A little space just for you...</h2>
+    <div class="write-container">
 
-    <form method="POST">
-    {% csrf_token %}
+        <h1>Dear Diary ♡</h1>
 
-    <input
-        type="text"
-        name="title"
-        placeholder="Give your entry a title..."
-        required
-    >
+        <h2>A little space just for you...</h2>
 
-    <br><br>
+        <form method="POST" class="write-form">
 
-    <textarea
-        name="content"
-        rows="10"
-        cols="50"
-        placeholder="What's on your mind today?"
-        required
-    ></textarea>
+            {% csrf_token %}
 
-    <br><br>
+            <label for="title">Entry Title</label>
 
-    <button type="submit">Save My Thoughts ♡</button>
-</form>
+            <input
+                type="text"
+                id="title"
+                name="title"
+                placeholder="Give your entry a title..."
+                required
+            >
 
-    <p><a href="/">← Back to home</a></p>
+            <label for="content">Your Thoughts</label>
+
+            <textarea
+                id="content"
+                name="content"
+                rows="10"
+                placeholder="What's on your mind today?"
+                required
+            ></textarea>
+
+            <label for="mood">
+                How are you feeling today? ♡
+            </label>
+
+            <select name="mood" id="mood" class="mood-select">
+
+                <option value="">Choose a mood (optional)</option>
+
+                <option value="happy">😊 Happy</option>
+                <option value="calm">😌 Calm</option>
+                <option value="sad">🥺 Sad</option>
+                <option value="anxious">😰 Anxious</option>
+                <option value="grateful">🤍 Grateful</option>
+                <option value="tired">😴 Tired</option>
+                <option value="angry">😡 Angry</option>
+                <option value="excited">🤩 Excited</option>
+                <option value="lonely">😔 Lonely</option>
+                <option value="nostalgic">🥹 Nostalgic</option>
+                <option value="confused">😕 Confused</option>
+                <option value="bored">😐 Bored</option>
+                <option value="motivated">💪 Motivated</option>
+                <option value="relaxed">😎 Relaxed</option>
+                <option value="hopeful">🌈 Hopeful</option>
+                <option value="disappointed">😞 Disappointed</option>
+                <option value="overwhelmed">😵‍💫 Overwhelmed</option>
+                <option value="inspired">✨ Inspired</option>
+                <option value="jealous">😒 Jealous</option>
+                <option value="content">🙂 Content</option>
+
+            </select>
+
+            <button type="submit">
+                Save My Thoughts ♡
+            </button>
+
+        </form>
+
+        <a href="{% url 'home' %}" class="write-back">
+            ← Back to Home
+        </a>
+
+    </div>
 
 </body>
 </html>
