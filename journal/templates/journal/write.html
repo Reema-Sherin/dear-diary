@@ -20,7 +20,7 @@
 
         <h2>A little space just for you...</h2>
 
-        <form method="POST" class="write-form">
+        <form method="POST" class="write-form" enctype="multipart/form-data">
 
             {% csrf_token %}
 
@@ -43,6 +43,20 @@
                 placeholder="What's on your mind today?"
                 required
             ></textarea>
+
+            <div class="image-upload">
+                <label for="id_image">
+                    Add a little photograph ♡
+                </label>
+
+                <input
+                    type="file"
+                    name="image"
+                    id="id_image"
+                    accept="image/*"
+                >
+            </div>
+
 
             <label for="mood">
                 How are you feeling today? ♡

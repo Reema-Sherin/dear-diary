@@ -20,6 +20,7 @@ def home(request):
         'latest_entry': latest_entry
     })
 
+
 @login_required
 def write_entry(request):
     if request.method == 'POST':
@@ -27,16 +28,21 @@ def write_entry(request):
         content = request.POST.get('content')
         mood = request.POST.get('mood', '')
 
+        # Receive uploaded photograph
+        image = request.FILES.get('image')
+
         DiaryEntry.objects.create(
             title=title,
             content=content,
             user=request.user,
-            mood=mood
+            mood=mood,
+            image=image
         )
 
         return redirect('entries')
 
     return render(request, 'journal/write.html')
+
 
 @login_required
 def diary_entries(request):
@@ -85,10 +91,31 @@ def edit_entry(request, entry_id):
         mood = request.POST.get('mood', '')
 
         if title and content:
+
+            # Keep a reference to the previous photograph
+            old_image = entry.image
+
+            # Check for a newly uploaded photograph
+            new_image = request.FILES.get('image')
+
+            # Check whether the user wants to remove the photograph
+            remove_image = request.POST.get('remove_image') == 'on'
+
             entry.title = title
             entry.content = content
             entry.mood = mood
+
+            if new_image:
+                entry.image = new_image
+
+            elif remove_image:
+                entry.image = None
+
             entry.save()
+
+            # Delete the previous physical file if replaced or removed
+            if old_image and (new_image or remove_image):
+                old_image.delete(save=False)
 
             return redirect('entry_detail', entry_id=entry.id)
 
@@ -102,6 +129,7 @@ def edit_entry(request, entry_id):
     return render(request, 'journal/edit_entry.html', {
         'entry': entry
     })
+
 
 @login_required
 def delete_entry(request, entry_id):

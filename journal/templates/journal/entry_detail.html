@@ -19,6 +19,17 @@
 
         <hr>
 
+        <!-- Display uploaded photograph -->
+        {% if entry.image %}
+            <div class="diary-photo">
+                <img
+                    src="{{ entry.image.url }}"
+                    alt="Photograph from this memory"
+                >
+            </div>
+        {% endif %}
+
+        
         <p>{{ entry.content|linebreaksbr }}</p>
         <a href="{% url 'edit_entry' entry.id %}" class="open-entry">
             Edit this memory ♡

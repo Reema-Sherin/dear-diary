@@ -36,3 +36,8 @@ class DiaryEntry(models.Model):
         null=True,
         blank=True
     )
+    image = models.ImageField(
+    upload_to='diary_images/',
+    blank=True,
+    null=True
+    )

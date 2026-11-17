@@ -21,7 +21,7 @@
             <p class="edit-error">{{ error }}</p>
         {% endif %}
 
-        <form method="POST" class="edit-form">
+        <form method="POST" class="edit-form" enctype=""multipart/form-data">
             {% csrf_token %}
 
             <label for="title">Memory Title</label>
@@ -41,6 +41,35 @@
                 required
             >{{ entry.content }}</textarea>
 
+            <div class="image-upload">
+
+                <label for="id_image">
+                    Change your photograph ♡
+                </label>
+
+                {% if entry.image %}
+                    <p>Current photograph:</p>
+
+                    <img
+                        src="{{ entry.image.url }}"
+                        alt="Current memory photograph"
+                        style="max-width: 200px; border-radius: 12px;"
+                    >
+
+                    <label>
+                        <input type="checkbox" name="remove_image">
+                        Remove this photograph
+                    </label>
+                {% endif %}
+
+                <input
+                    type="file"
+                    name="image"
+                    id="id_image"
+                    accept="image/*"
+                >
+
+            </div>
 
             <label for="mood">How are you feeling? ♡</label>
 
