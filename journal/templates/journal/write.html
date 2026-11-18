@@ -52,9 +52,18 @@
                 <input
                     type="file"
                     name="image"
-                    id="id_image"
+                    id="photoInput"
                     accept="image/*"
                 >
+
+                <div class="photo-preview">
+                    <img
+                        id="photoPreview"
+                        src=""
+                        alt="Preview of selected diary photo"
+                        style="display: none;"
+                    >
+                </div>
             </div>
 
 
@@ -100,6 +109,41 @@
         </a>
 
     </div>
+
+    <script>
+    const photoInput = document.getElementById("photoInput");
+    const photoPreview = document.getElementById("photoPreview");
+
+    let previewUrl = null;
+
+    photoInput.addEventListener("change", function () {
+
+        const file = this.files[0];
+
+        if (previewUrl) {
+            URL.revokeObjectURL(previewUrl);
+            previewUrl = null;
+        }
+
+        if (!file) {
+            photoPreview.src = "";
+            photoPreview.style.display = "none";
+            return;
+        }
+
+        if (!file.type.startsWith("image/")) {
+            alert("Please select an image file.");
+            this.value = "";
+            photoPreview.style.display = "none";
+            return;
+        }
+
+        previewUrl = URL.createObjectURL(file);
+
+        photoPreview.src = previewUrl;
+        photoPreview.style.display = "block";
+    });
+</script>
 
 </body>
 </html>

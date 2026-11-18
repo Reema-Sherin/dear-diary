@@ -879,3 +879,16 @@ body.home-page a.home-cta:hover {
     border-radius: 15px;
     box-shadow: 0 5px 18px rgba(120, 75, 110, 0.12);
 }
+
+.photo-preview {
+    margin-top: 15px;
+    text-align: center;
+}
+
+.photo-preview img {
+    max-width: 100%;
+    max-height: 300px;
+    object-fit: contain;
+    border-radius: 15px;
+    box-shadow: 0 5px 18px rgba(120, 75, 110, 0.12);
+}
