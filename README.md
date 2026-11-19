@@ -18,6 +18,24 @@ The project is being developed as a learning experience to explore full-stack we
 - **Image Uploads:** Attach images to diary entries.
 - **Search Memories:** Search diary entries using keywords.
 
+## 📸 Screenshots
+
+### Homepage
+![Dear Diary Homepage](screenshots/homepage.png)
+
+### Write Diary
+![Write Diary Page](screenshots/write.png)
+
+### My Memories
+![My Memories Page](screenshots/memories.png)
+
+### Entry Details
+![Diary Entry Details](screenshots/entrydetails.png)
+
+### Mood Analytics
+![Dear Diary Homepage](screenshots/moodchart.png)
+
+
 ## 🛠️ Technologies Used
 
 - **Backend:** Python, Django
