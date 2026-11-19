@@ -77,5 +77,86 @@
 
     </main>
 
+    {% if user.is_authenticated %}
+
+<section class="mood-analytics">
+
+    <h2>My Mood Snapshot ♡</h2>
+
+    <p>Your emotional journey over your last 7 entries.</p>
+
+    {% if mood_data %}
+
+        <div class="mood-chart-container">
+            <canvas id="moodChart"></canvas>
+        </div>
+
+    {% else %}
+
+        <p>No mood records yet. Start writing to see your mood journey! 🌷</p>
+
+    {% endif %}
+
+</section>
+
+{% endif %}
+
+{% if user.is_authenticated and mood_data %}
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+{{ mood_data|json_script:"mood-data" }}
+
+<script>
+
+    const moodData = JSON.parse(
+        document.getElementById('mood-data').textContent
+    );
+
+    const labels = moodData.map(item => item.mood);
+    const counts = moodData.map(item => item.count);
+
+    const ctx = document.getElementById('moodChart');
+
+    new Chart(ctx, {
+        type: 'doughnut',
+
+        data: {
+            labels: labels,
+
+            datasets: [{
+                data: counts,
+
+                backgroundColor: [
+                    '#E9B7D3',
+                    '#C9B8E8',
+                    '#B8D8D0',
+                    '#F5D6A5',
+                    '#D9B7D9',
+                    '#AFC5E8',
+                    '#E8B6B6',
+                    '#D5C6F0'
+                ],
+
+                borderWidth: 3,
+                borderColor: '#FFF9FC',
+                hoverOffset: 10
+            }]
+        },
+
+        options: {
+            responsive: true,
+
+            plugins: {
+                legend: {
+                    position: 'bottom'
+                }
+            }
+        }
+    });
+</script>
+
+{% endif %}
+
 </body>
 </html>

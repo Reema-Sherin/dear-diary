@@ -4,6 +4,7 @@ from django.db.models import Q
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
+from collections import Counter
 
 @login_required
 def home(request):
@@ -15,9 +16,30 @@ def home(request):
         user=request.user
     ).order_by('-created_at').first()
 
+    recent_entries = DiaryEntry.objects.filter(
+        user=request.user
+    ).order_by('-created_at')[:7]
+
+    mood_counts = Counter(
+        entry.mood
+        for entry in recent_entries
+        if entry.mood
+    )
+
+    mood_labels = dict(DiaryEntry.MOOD_CHOICES)
+
+    mood_data = [
+        {
+            'mood': mood_labels[mood],
+            'count': count
+        }
+        for mood, count in mood_counts.items()
+    ]
+
     return render(request, 'journal/home.html', {
         'total_entries': total_entries,
-        'latest_entry': latest_entry
+        'latest_entry': latest_entry,
+        'mood_data': mood_data
     })
 
 

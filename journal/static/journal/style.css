@@ -892,3 +892,32 @@ body.home-page a.home-cta:hover {
     border-radius: 15px;
     box-shadow: 0 5px 18px rgba(120, 75, 110, 0.12);
 }
+
+/* Mood Analytics */
+
+.mood-analytics {
+    max-width: 650px;
+    margin: 60px auto;
+    padding: 30px;
+    text-align: center;
+    background: #fff8fc;
+    border-radius: 25px;
+    box-shadow: 0 5px 20px rgba(180, 130, 180, 0.12);
+}
+
+.mood-analytics h2 {
+    color: #a77bb5;
+    margin-bottom: 10px;
+}
+
+.mood-analytics p {
+    color: #88758d;
+}
+
+.mood-chart-container {
+    position: relative;
+    width: 100%;
+    max-width: 350px;
+    height: 320px;
+    margin: 25px auto 0;
+}
