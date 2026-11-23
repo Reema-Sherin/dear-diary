@@ -41,3 +41,18 @@ class DiaryEntry(models.Model):
     blank=True,
     null=True
     )
+
+class Achievement(models.Model):
+    user = models.ForeignKey(
+    settings.AUTH_USER_MODEL,
+    on_delete=models.CASCADE
+)
+
+    title = models.CharField(max_length=150)
+    description = models.TextField(blank=True)
+    achieved_on = models.DateField()
+    photo = models.ImageField(
+        upload_to="achievements/",
+        blank=True,
+        null=True
+    )

@@ -1,0 +1,40 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ME | Dear Diary</title>
+    <link rel="stylesheet" href="{% static 'journal/style.css' %}">
+</head>
+
+<body class="home-page">
+
+    <nav class="home-nav">
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'entries' %}">My Memories</a>
+        <a href="{% url 'write_entry' %}">Write a Diary</a>
+    </nav>
+
+    <main class="home-content">
+        <h1>Little Things About Me ♡</h1>
+        <h2>My achievements, milestones and little wins 🌷</h2>
+
+        <a href="{% url 'achievement_create' %}" class="home-cta">
+            Add an Achievement ♡
+        </a>
+
+        {% for achievement in achievements %}
+            <article>
+                <h2>{{ achievement.title }}</h2>
+                <p>{{ achievement.description }}</p>
+                <p>{{ achievement.achieved_on }}</p>
+            </article>
+        {% empty %}
+            <p>Your scrapbook is waiting for its first memory! ♡</p>
+        {% endfor %}
+    </main>
+
+</body>
+</html>

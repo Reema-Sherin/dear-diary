@@ -921,3 +921,39 @@ body.home-page a.home-cta:hover {
     height: 320px;
     margin: 25px auto 0;
 }
+
+.me-page {
+    padding: 35px;
+    color: #59445f;
+}
+
+.me-page h1 {
+    color: #b477a5;
+    font-size: 32px;
+}
+
+.achievement-grid {
+    display: grid;
+    grid-template-columns:
+        repeat(auto-fit, minmax(230px, 1fr));
+    gap: 22px;
+    margin-top: 25px;
+}
+
+.achievement-card {
+    background: #fff7fc;
+    border: 1px solid #f0dced;
+    border-radius: 18px;
+    padding: 22px;
+    box-shadow: 0 4px 15px #ead9e955;
+}
+
+.achievement-card img {
+    width: 100%;
+    border-radius: 12px;
+    object-fit: cover;
+}
+
+.achievement-card h3 {
+    color: #a66f9e;
+}

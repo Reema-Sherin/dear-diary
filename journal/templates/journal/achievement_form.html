@@ -1,0 +1,35 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Achievement | Dear Diary</title>
+    <link rel="stylesheet" href="{% static 'journal/style.css' %}">
+</head>
+
+<body class="home-page">
+
+    <nav class="home-nav">
+        <a href="{% url 'achievement_list' %}">Back to ME ♡</a>
+        <a href="{% url 'home' %}">Home</a>
+    </nav>
+
+    <main class="home-content">
+        <h1>A Little Win of Mine ♡</h1>
+        <p>Every achievement deserves a place in your scrapbook.</p>
+
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            {{ form.as_p }}
+
+            <button type="submit" class="home-cta">
+                Save to My Scrapbook ♡
+            </button>
+        </form>
+    </main>
+
+</body>
+</html>

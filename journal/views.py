@@ -1,10 +1,12 @@
+from django.http import request
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import DiaryEntry
+from .models import Achievement, DiaryEntry
 from django.db.models import Q
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from collections import Counter
+from .forms import AchievementForm
 
 @login_required
 def home(request):
@@ -190,5 +192,41 @@ def signup(request):
     return render(
         request,
         'registration/signup.html',
+        {'form': form}
+    )
+
+@login_required
+def achievement_list(request):
+    achievements = Achievement.objects.filter(
+        user=request.user
+    ).order_by('-achieved_on')
+
+    return render(
+        request,
+        'journal/achievements.html',
+        {'achievements': achievements}
+    )
+
+@login_required
+def achievement_create(request):
+    if request.method == 'POST':
+        form = AchievementForm(
+            request.POST,
+            request.FILES
+        )
+
+        if form.is_valid():
+            achievement = form.save(commit=False)
+            achievement.user = request.user
+            achievement.save()
+
+            return redirect('achievement_list')
+
+    else:
+        form = AchievementForm()
+
+    return render(
+        request,
+        'journal/achievement_form.html',
         {'form': form}
     )
