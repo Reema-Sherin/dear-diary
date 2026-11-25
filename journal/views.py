@@ -7,6 +7,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from collections import Counter
 from .forms import AchievementForm
+from django.shortcuts import get_object_or_404
 
 @login_required
 def home(request):
@@ -229,4 +230,23 @@ def achievement_create(request):
         request,
         'journal/achievement_form.html',
         {'form': form}
+    )
+
+@login_required
+def achievement_delete(request, pk):
+
+    achievement = get_object_or_404(
+        Achievement,
+        pk=pk,
+        user=request.user
+    )
+
+    if request.method == 'POST':
+        achievement.delete()
+        return redirect('achievement_list')
+
+    return render(
+        request,
+        'journal/achievement_delete.html',
+        {'achievement': achievement}
     )

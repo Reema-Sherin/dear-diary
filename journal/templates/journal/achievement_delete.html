@@ -1,0 +1,49 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remove Achievement | Dear Diary</title>
+    <link rel="stylesheet" href="{% static 'journal/style.css' %}">
+</head>
+
+<body class="me-page">
+
+    <main class="me-container">
+
+        <section class="me-empty">
+
+            <div class="me-empty-icon">♡</div>
+
+            <h1>Let this memory go?</h1>
+
+            <p>
+                Are you sure you want to remove
+                <strong>{{ achievement.title }}</strong>
+                from your scrapbook?
+            </p>
+
+            <p>This action cannot be undone.</p>
+
+            <form method="POST">
+                {% csrf_token %}
+
+                <button type="submit" class="me-delete-button">
+                    Yes, remove it
+                </button>
+            </form>
+
+            <br>
+
+            <a href="{% url 'achievement_list' %}" class="me-add-button">
+                No, keep it ♡
+            </a>
+
+        </section>
+
+    </main>
+
+</body>
+</html>

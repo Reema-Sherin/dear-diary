@@ -5,35 +5,94 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ME | Dear Diary</title>
+    <title>My Little Scrapbook | Dear Diary</title>
     <link rel="stylesheet" href="{% static 'journal/style.css' %}">
 </head>
 
-<body class="home-page">
+<body class="me-page">
 
-    <nav class="home-nav">
-        <a href="{% url 'home' %}">Home</a>
+    <nav class="me-nav">
         <a href="{% url 'entries' %}">My Memories</a>
         <a href="{% url 'write_entry' %}">Write a Diary</a>
+        <a href="{% url 'achievement_create' %}" class="me-add-button">
+            + Add a Little Win
+        </a>
     </nav>
 
-    <main class="home-content">
-        <h1>Little Things About Me ♡</h1>
-        <h2>My achievements, milestones and little wins 🌷</h2>
+    <main class="me-container">
 
-        <a href="{% url 'achievement_create' %}" class="home-cta">
-            Add an Achievement ♡
-        </a>
+        <header class="me-heading">
+            <p class="me-eyebrow">A LITTLE COLLECTION OF ME</p>
 
-        {% for achievement in achievements %}
-            <article>
+            <h1>My Little Scrapbook ♡</h1>
+
+            <p>
+                Every little step counts. Here's a place to remember
+                how far I've come.
+            </p>
+
+            <div class="me-count">
+                {{ achievements|length }}
+                Little Win{{ achievements|length|pluralize }}
+            </div>
+        </header>
+
+        {% if achievements %}
+
+        <section class="me-grid">
+
+            {% for achievement in achievements %}
+
+            <article class="me-card">
+
+                <div class="me-card-top">
+                    <span class="me-star">✦</span>
+
+                    <time datetime="{{ achievement.achieved_on|date:'Y-m-d' }}">
+                        {{ achievement.achieved_on|date:"F j, Y" }}
+                    </time>
+                </div>
+
                 <h2>{{ achievement.title }}</h2>
-                <p>{{ achievement.description }}</p>
-                <p>{{ achievement.achieved_on }}</p>
+
+                {% if achievement.description %}
+                    <p>{{ achievement.description }}</p>
+                {% endif %}
+
+                <div class="me-card-footer">
+                    A little moment worth remembering ♡
+                </div>
+
+                <a href="{% url 'achievement_delete' achievement.pk %}"
+                    class="me-delete-link">
+                     Remove achievement
+                </a>
+
             </article>
-        {% empty %}
-            <p>Your scrapbook is waiting for its first memory! ♡</p>
-        {% endfor %}
+
+            {% endfor %}
+
+        </section>
+
+        {% else %}
+
+        <section class="me-empty">
+            <div class="me-empty-icon">♡</div>
+
+            <h2>Your scrapbook is waiting!</h2>
+
+            <p>
+                Your first achievement doesn't have to be something big.
+                Even the smallest wins deserve to be celebrated.
+            </p>
+
+            <a href="{% url 'achievement_create' %}" class="me-add-button">
+                Save My First Little Win
+            </a>
+        </section>
+
+        {% endif %}
+
     </main>
 
 </body>
